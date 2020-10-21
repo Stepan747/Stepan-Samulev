@@ -1,0 +1,92 @@
+using System;
+using System.ComponentModel;
+using System.Security;
+
+namespace Calculator_1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            const string hello_its_calculator = "Вас приветствует калькулятор)";
+            const string begin_Porogram_Text = "\nВыберите операцию: \n1.Сложение чисел \n2.Вычитание чисел \n3.Деление чисел \n4.Умножение чисел" +
+                "\n0.Завершение работы калькулятора";
+            const string error_Text = "Ошибка! Такой операции не существует(";
+            const string result_Text = "Результат: ";
+            const string first_value_text = "Введите первое число: ";
+            const string second_value_text = "Введите второе число:";
+            const string exit_from_programm = "Выход из программы успешно совершен)";
+            const string second_exep = "\nВозможно вы использовали точку вместо запятой или некоректно ввели число \nПоробуйте заново: ";
+
+            Console.WriteLine(hello_its_calculator);
+            int persons_chose_value = 1;
+            double first_value = 0, second_value = 0;
+
+            do
+            {
+                Console.WriteLine(begin_Porogram_Text);
+                while (!(Int32.TryParse(Console.ReadLine(), out persons_chose_value)))
+                {
+                    Console.Write(second_exep);
+                }
+                if (persons_chose_value <= 4 && persons_chose_value >= 1)
+                {
+                    Console.WriteLine(first_value_text);
+                    while (!(Double.TryParse(Console.ReadLine(), out first_value)))
+                    {
+                        Console.Write(second_exep);
+                    }
+
+                    Console.WriteLine(second_value_text);
+                    while (!(Double.TryParse(Console.ReadLine(), out second_value)))
+                    {
+                        Console.Write(second_exep);
+                    }
+                }
+                switch (persons_chose_value)
+                {
+                    case 0:
+                        Console.WriteLine(exit_from_programm);
+                        break;
+                    case 1:
+                        Console.WriteLine(result_Text + summa(first_value, second_value));
+                        break;
+                    case 2:
+                        Console.WriteLine(result_Text + substraction(first_value, second_value));
+                        break;
+                    case 3:
+                        Console.WriteLine(result_Text + division(first_value, second_value));
+                        break;
+                    case 4:
+                        Console.WriteLine(result_Text + multiplication(first_value, second_value));
+                        break;
+                    default:
+                        Console.WriteLine(error_Text);
+                        break;
+                }
+            }
+            while (persons_chose_value != 0);
+
+        }
+        public static double summa(double a, double b)
+        {
+            return a + b;
+        }
+
+        public static double substraction(double a, double b)
+        {
+            return a - b;
+        }
+
+        public static double division (double a, double b)
+        {
+            return a / b;
+        }
+
+        public static double multiplication (double a, double b)
+        {
+            return a * b;
+        }
+    }
+}
