@@ -1,0 +1,48 @@
+using System;
+
+namespace factorial_mazafaca_chisla
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string first_Text = "Введите число, я посчитаю его факториал: ";
+            string result_Text = "Результат: ";
+            string errror_Text = "Ошибка!";
+            
+            int factorial = 1;
+            int personsValue = 0;
+
+            
+             Console.WriteLine(first_Text);
+             while (!(Int32.TryParse(Console.ReadLine(), out personsValue))) ;
+            
+
+            if (personsValue > 0 && personsValue < 30)
+            {
+                for (int i = 1; i <= personsValue; i++)
+                {
+                    factorial *= i;
+                }
+                Console.WriteLine(result_Text + factorial);
+            }
+            else if (personsValue > 30)
+            {
+                do
+                {
+                    int chislo = personsValue - 2;
+                    personsValue--;
+
+                    Console.Write(chislo);
+                }
+                while (personsValue != 2);
+            }
+            else
+            {
+                Console.WriteLine(errror_Text);
+            }
+
+        }
+    }
+}
